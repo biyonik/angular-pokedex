@@ -8,15 +8,15 @@ import { IPokeModel } from "../../models/poke.model";
     template: `
         <div class="pokedex">
             <h1>Pokedex!</h1>
-            <p>Total Experience: {{ experience() }}</p>
+            <p class="pokedex-total">Total Experience: {{ experience() }}</p>
 
             @let winner = isWinner();
             @if (winner) {
-                <p>You won!</p>
+                <p class="pokedex-winner">You won!</p>
             } @else {
-                <p>You lost!</p>
+                <p class="pokedex-loser">You lost!</p>
             }
-            
+
             <div class="pokedex-cards">
             @for (pokemon of pokemons(); track pokemon.id) {
                 <app-pokecard [pokemon]="pokemon"></app-pokecard>
@@ -27,12 +27,33 @@ import { IPokeModel } from "../../models/poke.model";
         </div>
     `,
     styles: [`
-        .pokedex-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            gap: 1rem;
-        }    
+
+        .pokedex {
+            text-align: center;
+
+            &-winner, &-loser {
+                font-size: 2rem;
+            }
+
+            &-winner {
+                color: #4caf50;
+            }
+
+            &-loser {
+                color: #e91e63;
+            }
+
+            &-cards {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                gap: 1rem;
+            }
+
+            &-total {
+                font-size: 1.5rem;
+            }
+        }
     `],
     imports: [PokecardComponent]
  })

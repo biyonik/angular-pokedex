@@ -9,6 +9,7 @@ import PokedexComponent from "../pokedex/pokedex.component";
     template: `
         <div class="pokegame">
             <app-pokedex [pokemons]="firstHand()" [experience]="firstHandExperience()" [isWinner]="firstHandExperience() > secondHandExperience()"/>
+            <hr>
             <app-pokedex [pokemons]="secondHand()" [experience]="secondHandExperience()" [isWinner]="secondHandExperience() > firstHandExperience()"/>
         </div>
     `,

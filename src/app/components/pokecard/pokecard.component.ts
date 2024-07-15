@@ -10,7 +10,9 @@ const POKE_IMAGE_API = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detai
     template: `
         <div class="pokecard">
             <h1 class="pokecard-title">{{ pokemon().name }}</h1>
-            <img [src]="pokeImage()" alt="{{ pokemon().name }}">
+            <div class="pokecard-image">
+                <img [src]="pokeImage()" alt="{{ pokemon().name }}">
+            </div>
             <div class="pokecard-data">Type: {{ pokemon().type }}</div>
             <div class="pokecard-data">Experience: {{ pokemon().experience }}</div>
         </div>
@@ -31,6 +33,28 @@ const POKE_IMAGE_API = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detai
 
             &-data {
                 font-size: 80%;
+            }
+
+            &-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                height: 200px;
+                background-color: #eceff1;
+                border-radius: 4px;
+                margin : 1rem 0;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+
+                img:hover {
+                    transform: scale(1.25);
+                    transition: all 0.5s ease-in-out;
+                    cursor: pointer;
+                }
             }
         }    
     `]
