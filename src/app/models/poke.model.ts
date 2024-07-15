@@ -1,7 +1,7 @@
 type IdType = number | string;
 
 export interface IPokeModel {
-    id: IdType;
+    id: number;
     name: string;
     type: string;
     experience: number;

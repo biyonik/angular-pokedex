@@ -1,6 +1,5 @@
-import { Component, computed, signal, Signal } from "@angular/core";
+import { Component, computed, input, InputSignal, signal, Signal } from "@angular/core";
 import PokecardComponent from "../pokecard/pokecard.component";
-import { POKE_DATA } from "../../data/pokemon.data";
 import { IPokeModel } from "../../models/poke.model";
 
  @Component({
@@ -9,6 +8,15 @@ import { IPokeModel } from "../../models/poke.model";
     template: `
         <div class="pokedex">
             <h1>Pokedex!</h1>
+            <p>Total Experience: {{ experience() }}</p>
+
+            @let winner = isWinner();
+            @if (winner) {
+                <p>You won!</p>
+            } @else {
+                <p>You lost!</p>
+            }
+            
             <div class="pokedex-cards">
             @for (pokemon of pokemons(); track pokemon.id) {
                 <app-pokecard [pokemon]="pokemon"></app-pokecard>
@@ -29,5 +37,7 @@ import { IPokeModel } from "../../models/poke.model";
     imports: [PokecardComponent]
  })
  export default class PokedexComponent {
-    pokemons: Signal<IPokeModel[]> = signal(POKE_DATA);
+    pokemons = input<IPokeModel[]>([]);
+    experience = input<number>(0);
+    isWinner = input<boolean>(false);
  }

@@ -1,7 +1,8 @@
 import { Component, computed, input, InputSignal, Signal } from "@angular/core";
 import { IPokeModel } from "../../models/poke.model";
 
-const POKE_IMAGE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+// const POKE_IMAGE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+const POKE_IMAGE_API = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/';
 
  @Component({
     standalone: true,
@@ -37,5 +38,9 @@ const POKE_IMAGE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master
  export default class PokecardComponent {
     pokemon: InputSignal<IPokeModel> = input.required<IPokeModel>();
 
-    pokeImage: Signal<string> = computed(() => POKE_IMAGE_API + this.pokemon().id + '.png');
+    pokeIdPadToThree: Signal<string | number> = computed(() => {
+        return this.pokemon().id <= 999 ? `00${this.pokemon().id}`.slice(-3) : this.pokemon().id
+    });
+
+    pokeImage: Signal<string> = computed(() => POKE_IMAGE_API + this.pokeIdPadToThree() + '.png');
  }
