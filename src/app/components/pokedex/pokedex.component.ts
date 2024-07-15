@@ -9,14 +9,23 @@ import { IPokeModel } from "../../models/poke.model";
     template: `
         <div class="pokedex">
             <h1>Pokedex!</h1>
+            <div class="pokedex-cards">
             @for (pokemon of pokemons(); track pokemon.id) {
                 <app-pokecard [pokemon]="pokemon"></app-pokecard>
             } @empty {
                 <p>Any pokemon not found!</p>
             }
+            </div>
         </div>
     `,
-    styles: [``],
+    styles: [`
+        .pokedex-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 1rem;
+        }    
+    `],
     imports: [PokecardComponent]
  })
  export default class PokedexComponent {

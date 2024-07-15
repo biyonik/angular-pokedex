@@ -8,15 +8,29 @@ const POKE_IMAGE_API = 'https://raw.githubusercontent.com/PokeAPI/sprites/master
     selector: 'app-pokecard',
     template: `
         <div class="pokecard">
-            <h1>{{ pokemon().name }}</h1>
+            <h1 class="pokecard-title">{{ pokemon().name }}</h1>
             <img [src]="pokeImage()" alt="{{ pokemon().name }}">
-            <div>Type: {{ pokemon().type }}</div>
-            <div>Experience: {{ pokemon().experience }}</div>
+            <div class="pokecard-data">Type: {{ pokemon().type }}</div>
+            <div class="pokecard-data">Experience: {{ pokemon().experience }}</div>
         </div>
     `,
     styles: [`
         .pokecard {
-            border: 2px solid mediumseagreen;
+            width: 300px;
+            padding: 1rem;
+            margin: 1rem;
+            box-shadow: 7px 10px 12px -5px rgba(0,0,0, 0.56);
+            text-align: center;
+            background-color: white;
+            border-radius: 4px;
+
+            &-title {
+                font-size: 1.5rem;
+            }
+
+            &-data {
+                font-size: 80%;
+            }
         }    
     `]
  })
